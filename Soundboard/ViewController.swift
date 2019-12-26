@@ -17,84 +17,51 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func aTapped(_ sender: Any) {
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
         
-        // Getting the url
-        let url = Bundle.main.url(forResource: "a", withExtension: "mp3")
+        let selectedButton = sender.tag
         
-        // make sure that we've got the url, otherwise abord
-        guard url != nil else {
+        switch selectedButton {
+        case 1:
+            let url = Bundle.main.url(forResource: "a", withExtension: "mp3")
+            guard url != nil else {
+                return
+            }
+            playButtonSoundWith(url: url!)
+        case 2:
+            let url = Bundle.main.url(forResource: "b", withExtension: "mp3")
+            guard url != nil else {
+                return
+            }
+            playButtonSoundWith(url: url!)
+        case 3:
+            let url = Bundle.main.url(forResource: "c",withExtension: "mp3")
+            guard url != nil else {
+                return
+            }
+            playButtonSoundWith(url: url!)
+        case 4:
+            let url = Bundle.main.url(forResource: "d",withExtension: "mp3")
+            guard url != nil else {
+                return
+            }
+            playButtonSoundWith(url: url!)
+        default:
             return
-        }
-        
-        // Create the audio player and play the sound
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url!)
-            audioPlayer!.play()
-        }
-        catch {
-            print("error")
+            
         }
     }
     
-    @IBAction func bTapped(_ sender: Any) {
-        
-        // Getting the url
-        let url = Bundle.main.url(forResource: "b", withExtension: "mp3")
-        
-        // make sure that we've got the url, otherwise abord
-        guard url != nil else {
-            return
-        }
-        
+    func playButtonSoundWith(url: URL) {
         // Create the audio player and play the sound
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url!)
-            audioPlayer!.play()
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
         }
         catch {
             print("error")
         }
-    }
-    
-    @IBAction func cTapped(_ sender: Any) {
-        
-        // Getting the url
-        let url = Bundle.main.url(forResource: "c", withExtension: "mp3")
-        
-        // make sure that we've got the url, otherwise abord
-        guard url != nil else {
-            return
-        }
-        
-        // Create the audio player and play the sound
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url!)
-            audioPlayer!.play()
-        }
-        catch {
-            print("error")
-        }
-    }
-    
-    @IBAction func dTapped(_ sender: Any) {
-        // Getting the url
-        let url = Bundle.main.url(forResource: "d", withExtension: "mp3")
-        
-        // make sure that we've got the url, otherwise abord
-        guard url != nil else {
-            return
-        }
-        
-        // Create the audio player and play the sound
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url!)
-            audioPlayer!.play()
-        }
-        catch {
-            print("error")
-        }
-    }
+    }  
 }
 
